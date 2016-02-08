@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mortgage Calculator</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Mortgage Calculator">
+  <meta name="author" content="YeongWei">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/slidify.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Mortgage Calculator</h1>
+    <h2>Your One Stop Self-Help Mortgage Calculation Solution</h2>
+    <p>YeongWei<br/>Data Science Specialization Intern with Coursera</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h3>Overview</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Buying a house is one of the major decisions in life. If homework was not done diligently, one may risk falling into the nightmares of mortgage repayments. However with access to this Mortgage Calculator, one could easilly compute the mortgage commitments at breeze and make better mortgage decision.</p>
+
+<p>** The calculation is based this <a href="http://www.hughcalc.org/formula.php">information</a>.</p>
+
+<h3>Too Easy!</h3>
+
+<p>This Mortgage calculator requires minimal information to perform the computation.</p>
+
+<p><img src="assets/img/inputImg.png" alt="alt text"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Too Friendly!</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>In the <code>Calculation Results</code> section,</p>
+
+<ul>
+<li><code>Summary</code> - Summary of the mortgage details.</li>
+<li><code>Annual Amortization Table</code> - Displays the estimated interest, principle payment and remaining annual balance.</li>
+<li><code>Monthly Amortization Table</code> - Displays the estimated interest, principle payment and remaining monthly balance.</li>
+<li><code>Amortization Chart</code> A Mortgage Repayment Chart..</li>
+</ul>
+
+<p><img src="assets/img/outputTabs.png" alt="alt text"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Calculations with R</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>The calculation of monthly payment is done using the R function below:</p>
+
+<pre><code class="r">calcMonthlyPayment &lt;- function(principle, monthlyInterest, monthsToPay) {
+  return(round(principle * (monthlyInterest/(1-(1+monthlyInterest)^(-monthsToPay))), digits = 2))
+}
+</code></pre>
+
+<p>This is demonstrated below with property value $300000, down payment $30000, yearly loan interest rate 5% and total loan payment years equals to 10.</p>
+
+<pre><code class="r"># Example calculation of monthly payment
+principle &lt;- 300000 - 30000  #principle = propertyValue - downPayment
+monthlyInterest &lt;- 5/(12*100)   #monthlyInterest = yearlyInterest/(12*100) 
+monthsToPay &lt;- 10 * 12   #monthsToPay = yearsToPay * 12
+calcMonthlyPayment(principle, monthlyInterest, monthsToPay)
+</code></pre>
+
+<pre><code>## [1] 2863.77
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Calculations with R (continued...)</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Procedure to create annual and monthly payment tables:</p>
+
+<ol>
+<li>Current month interest payment (<code>cuMonthInterest</code>) equals to loan <code>balance</code> multiply by <code>monthlyInterest</code>.</li>
+<li>Principle payment for the current month (<code>cuMonthPrinciple</code>) equals to monthly payment calculated above minus <code>cuMonthInterest</code>.</li>
+<li>Next new loan <code>balance</code> is then equals to old <code>balance</code> minus <code>cuMonthPrinciple</code>.</li>
+<li>Procedure is repeated from step one through step three with the new loan <code>balance</code> until loan <code>balance</code> is zero. </li>
+</ol>
+
+<h3>Quick instructions any time</h3>
+
+<p>You can refer to the <code>Documentation</code> tab on the navigation bar any time at the top of the shiny site which gives a simple description on how to use the Mortgage Calculator App. You can also check out the <code>About App</code> tab to view details about the application.</p>
+
+<h3>Go to application link now</h3>
+
+<p>Mortgage Calculator Application link in Rstudio shiny server: <a href="https://yuriauyong.shinyapps.io/wk3Proj">https://yuriauyong.shinyapps.io/wk3Proj</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Overview'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Too Friendly!'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Calculations with R'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Calculations with R (continued...)'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
