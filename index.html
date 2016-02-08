@@ -83,23 +83,26 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h3>Calculations with R</h3>
+    <h3>Easy Calculations with R</h3>
   </hgroup>
   <article data-timings="">
-    <p>The calculation of monthly payment is done using the R function below:</p>
+    <p>A calculation demostration for monthly repayment with R Code:</p>
 
 <pre><code class="r">calcMonthlyPayment &lt;- function(principle, monthlyInterest, monthsToPay) {
-  return(round(principle * (monthlyInterest/(1-(1+monthlyInterest)^(-monthsToPay))), digits = 2))
+  round( principle * ( monthlyInterest / ( 1 - ( 1 + monthlyInterest ) ^ ( -monthsToPay ) ) ), digits = 2)
 }
 </code></pre>
 
-<p>This is demonstrated below with property value $300000, down payment $30000, yearly loan interest rate 5% and total loan payment years equals to 10.</p>
+<p>Say <em>property value</em> of $300000, <em>down payment</em> of $30000, <em>yearly loan interest rate</em> of 5% and <em>total loan payment years</em> of 10.</p>
 
-<pre><code class="r"># Example calculation of monthly payment
-principle &lt;- 300000 - 30000  #principle = propertyValue - downPayment
-monthlyInterest &lt;- 5/(12*100)   #monthlyInterest = yearlyInterest/(12*100) 
-monthsToPay &lt;- 10 * 12   #monthsToPay = yearsToPay * 12
-calcMonthlyPayment(principle, monthlyInterest, monthsToPay)
+<pre><code class="r">principle = 300000 - 30000  # principle = propertyValue - downPayment
+monthlyInterest = 5 / ( 12 * 100 )   # monthlyInterest = yearlyInterest / ( 12 * 100 ) 
+monthsToPay = 10 * 12   # monthsToPay = yearsToPay * 12
+</code></pre>
+
+<p>The monthly repayment equates to,</p>
+
+<pre><code class="r">calcMonthlyPayment(principle, monthlyInterest, monthsToPay)
 </code></pre>
 
 <pre><code>## [1] 2863.77
@@ -111,10 +114,10 @@ calcMonthlyPayment(principle, monthlyInterest, monthsToPay)
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h3>Calculations with R (continued...)</h3>
+    <h3>Easy Facts</h3>
   </hgroup>
   <article data-timings="">
-    <p>Procedure to create annual and monthly payment tables:</p>
+    <p>Procedure to create annual and monthly amortization tables:</p>
 
 <ol>
 <li>Current month interest payment (<code>cuMonthInterest</code>) equals to loan <code>balance</code> multiply by <code>monthlyInterest</code>.</li>
@@ -123,13 +126,18 @@ calcMonthlyPayment(principle, monthlyInterest, monthsToPay)
 <li>Procedure is repeated from step one through step three with the new loan <code>balance</code> until loan <code>balance</code> is zero. </li>
 </ol>
 
-<h3>Quick instructions any time</h3>
+<p>Refer to <a href="https://github.com/yeongwei/coursera-develop-data-prods">github</a> for detailed information.</p>
 
-<p>You can refer to the <code>Documentation</code> tab on the navigation bar any time at the top of the shiny site which gives a simple description on how to use the Mortgage Calculator App. You can also check out the <code>About App</code> tab to view details about the application.</p>
+<h3>Sticky Information</h3>
 
-<h3>Go to application link now</h3>
+<ol>
+<li>The <code>How to Use</code> tab consist of information about procedures to operate the application.</li>
+<li>The <code>About</code> consist further information regards to the application.</li>
+</ol>
 
-<p>Mortgage Calculator Application link in Rstudio shiny server: <a href="https://yuriauyong.shinyapps.io/wk3Proj">https://yuriauyong.shinyapps.io/wk3Proj</a></p>
+<h3>One Step Closer to Your Dream House!</h3>
+
+<p>Visit the website for this Mortgage Calculator anytime at <a href="https://yeongwei.shinyapps.io/MortgageCalculator/">here</a>.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -153,13 +161,13 @@ calcMonthlyPayment(principle, monthlyInterest, monthsToPay)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Calculations with R'>
+        data-slide=3 title='Easy Calculations with R'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Calculations with R (continued...)'>
+        data-slide=4 title='Easy Facts'>
          4
       </a>
     </li>

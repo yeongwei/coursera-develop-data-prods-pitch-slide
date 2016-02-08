@@ -40,41 +40,47 @@ In the `Calculation Results` section,
 
 ### Easy Calculations with R
 
-The calculation of monthly payment is done using the R function below:
+A calculation demostration for monthly repayment with R Code:
 
 ```{r}
 calcMonthlyPayment <- function(principle, monthlyInterest, monthsToPay) {
-  return(round(principle * (monthlyInterest/(1-(1+monthlyInterest)^(-monthsToPay))), digits = 2))
+  round( principle * ( monthlyInterest / ( 1 - ( 1 + monthlyInterest ) ^ ( -monthsToPay ) ) ), digits = 2)
 }
 ```
 
-This is demonstrated below with property value $300000, down payment $30000, yearly loan interest rate 5% and total loan payment years equals to 10.
+Say *property value* of $300000, *down payment* of $30000, *yearly loan interest rate* of 5% and *total loan payment years* of 10.
 
 ```{r}
-# Example calculation of monthly payment
-principle <- 300000 - 30000  #principle = propertyValue - downPayment
-monthlyInterest <- 5/(12*100)   #monthlyInterest = yearlyInterest/(12*100) 
-monthsToPay <- 10 * 12   #monthsToPay = yearsToPay * 12
+principle = 300000 - 30000  # principle = propertyValue - downPayment
+monthlyInterest = 5 / ( 12 * 100 )   # monthlyInterest = yearlyInterest / ( 12 * 100 ) 
+monthsToPay = 10 * 12   # monthsToPay = yearsToPay * 12
+```
+
+The monthly repayment equates to,
+```{r}
 calcMonthlyPayment(principle, monthlyInterest, monthsToPay)
 ```
 
 --- .class #id 
 
-### Calculations with R (continued...)
+### Easy Facts
 
-Procedure to create annual and monthly payment tables:
+Procedure to create annual and monthly amortization tables:
 
 1. Current month interest payment (`cuMonthInterest`) equals to loan `balance` multiply by `monthlyInterest`.
 2. Principle payment for the current month (`cuMonthPrinciple`) equals to monthly payment calculated above minus `cuMonthInterest`.
 3. Next new loan `balance` is then equals to old `balance` minus `cuMonthPrinciple`.
 4. Procedure is repeated from step one through step three with the new loan `balance` until loan `balance` is zero. 
 
-
-### Quick instructions any time
-
-You can refer to the `Documentation` tab on the navigation bar any time at the top of the shiny site which gives a simple description on how to use the Mortgage Calculator App. You can also check out the `About App` tab to view details about the application.
+Refer to [github](https://github.com/yeongwei/coursera-develop-data-prods) for detailed information.
 
 
-### Go to application link now
+### Sticky Information
 
-Mortgage Calculator Application link in Rstudio shiny server: https://yuriauyong.shinyapps.io/wk3Proj
+1. The `How to Use` tab consist of information about procedures to operate the application.
+2. The `About` consist further information regards to the application.
+
+
+### One Step Closer to Your Dream House!
+
+Visit the website for this Mortgage Calculator anytime at [here](https://yeongwei.shinyapps.io/MortgageCalculator/).
